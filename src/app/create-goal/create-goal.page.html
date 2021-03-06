@@ -1,0 +1,36 @@
+ <ion-header translucent>
+     <ion-toolbar color="primary">
+         <ion-title>Nueva Meta</ion-title>
+         <ion-buttons slot="end">
+             <ion-button (click)="cerrar()">
+                 <ion-icon name="close-circle-outline"></ion-icon>
+             </ion-button>
+         </ion-buttons>
+     </ion-toolbar>
+ </ion-header>
+ <ion-content>
+     <ion-item>
+         <ion-select placeholder="Motivo de ahorro" [(ngModel)]="dataInfo.type" cancelText="Atrás" okText="Elegir" style="min-width: 100%;padding-left: 0">
+             <ion-select-option *ngFor="let item of types" value="{{item}}">
+                 {{item}}
+             </ion-select-option>
+         </ion-select>
+     </ion-item>
+     <ion-item>
+         <ion-label position="stacked">Fecha de Ahorro</ion-label>
+         <ion-datetime displayFormat="DD MM YY" [(ngModel)]="dataInfo.dateSaving" min="2021-04-01" max="2030-12-31"></ion-datetime>
+     </ion-item>
+     <ion-item>
+         <ion-label position="stacked">Monto a Ahorrar</ion-label>
+         <ion-input [(ngModel)]="dataInfo.amount" type="number" min="0"> </ion-input>
+     </ion-item>
+     <ion-button expand="full" (click)="save()" [disabled]="dataInfo.type == '' || dataInfo.dateSaving == '' || dataInfo.amount <= 0  ">Guardar Meta</ion-button>
+
+     <ion-list>
+         <ion-item style="text-align:center;">Ahorro Deportivo es <strong color="primary"> &nbsp; ¡Sencillo!</strong></ion-item>
+         <ion-item><span class="numberlist">1</span> Crea una meta de ahorro con fecha y monto</ion-item>
+         <ion-item><span class="numberlist">2</span> Agregale reglas y condiciones para su funcionamiento</ion-item>
+         <ion-item><span class="numberlist">3</span> Simula cuando dinero pudiste haber ahorrado</ion-item>
+         <ion-item><span class="numberlist">4</span> Empieza Ahorrar!</ion-item>
+     </ion-list>
+ </ion-content>

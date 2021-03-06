@@ -1,0 +1,32 @@
+ <ion-header translucent>
+     <ion-toolbar color="primary">
+         <ion-title>Reglas</ion-title>
+         <ion-buttons slot="end">
+             <ion-button (click)="cerrar()">
+                 <ion-icon name="close-circle-outline"></ion-icon>
+             </ion-button>
+         </ion-buttons>
+     </ion-toolbar>
+ </ion-header>
+
+ <ion-content>
+     <ion-item>
+         <ion-select placeholder="Equipo de Fútbol" [(ngModel)]="dataInfo.team" cancelText="Atrás" okText="Elegir" style="min-width: 100%;padding-left: 0">
+             <ion-select-option *ngFor="let item of teams" value="{{item.id}}">
+                 {{item.name}}
+             </ion-select-option>
+         </ion-select>
+     </ion-item>
+     <ion-item>
+         <ion-select placeholder="Realizar un ahorro cuando" [(ngModel)]="dataInfo.events" cancelText="Atrás" okText="Elegir" style="min-width: 100%;padding-left: 0">
+             <ion-select-option *ngFor="let item of types" value="{{item.value}}">
+                 {{item.title}}
+             </ion-select-option>
+         </ion-select>
+     </ion-item>
+     <ion-item>
+         <ion-label position="stacked">Monto a Ahorrar</ion-label>
+         <ion-input [(ngModel)]="dataInfo.amount" type="number" min="0"> </ion-input>
+     </ion-item>
+     <ion-button expand="full" (click)="save()" [disabled]="dataInfo.team == '' || dataInfo.dateSaving == '' || dataInfo.amount <= 0  ">Guardar Regla</ion-button>
+ </ion-content>

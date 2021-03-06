@@ -1,0 +1,39 @@
+ <ion-header translucent>
+     <ion-toolbar color="primary">
+         <ion-title>Detalle de Meta</ion-title>
+         <ion-buttons slot="end">
+             <ion-button (click)="cerrar()">
+                 <ion-icon name="close-circle-outline"></ion-icon>
+             </ion-button>
+         </ion-buttons>
+     </ion-toolbar>
+ </ion-header>
+ <ion-content>
+     <ion-item>
+         <ion-select placeholder="Motivo de ahorro" [(ngModel)]="data.type" cancelText="Atrás" okText="Elegir" style="min-width: 100%;padding-left: 0">
+             <ion-select-option *ngFor="let item of types" value="{{item}}">
+                 {{item}}
+             </ion-select-option>
+         </ion-select>
+     </ion-item>
+     <ion-item>
+         <ion-label position="stacked">Fecha de Ahorro</ion-label>
+         <ion-datetime displayFormat="DD MM YY" [(ngModel)]="data.dateSaving" min="2021-04-01" max="2030-12-31"></ion-datetime>
+     </ion-item>
+     <ion-item>
+         <ion-label position="stacked">Monto a Ahorrar</ion-label>
+         <ion-input [(ngModel)]="data.amount" type="number" min="0"> </ion-input>
+     </ion-item>
+     <ion-item>
+         <ion-label position="stacked">Reglas</ion-label>
+     </ion-item>
+     <ion-item *ngFor="let item of rules; let i = index ">
+         <ion-label class="ion-text-wrap">
+             <h3>{{ typesrules[item.events]  }} - ${{ item.amount  }}</h3>
+         </ion-label>
+         <ion-button slot="end" (click)="rule(i, item)">
+             <ion-icon name="ellipsis-vertical-circle-outline"></ion-icon>
+         </ion-button>
+     </ion-item>
+     <ion-button expand="full" (click)="save()" [disabled]="data.type == '' || data.dateSaving == '' || data.amount <= 0  ">Actualizar Meta</ion-button>
+ </ion-content>

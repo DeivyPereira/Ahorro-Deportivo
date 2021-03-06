@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-title>
+            Mis Metas
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-list *ngIf="goals?.length > 0">
+
+        <ion-item *ngFor="let item of goals; let i = index ">
+            <ion-label class="ion-text-wrap">
+                <ion-text color="primary">
+                    <h3>{{item.type}}</h3>
+                </ion-text>
+                <p>Meta: ${{item.amount}}</p>
+                <p>Reglas: ({{item.rules.length}})</p>
+
+            </ion-label>
+            <ion-button slot="end" (click)="presentActionSheet(i, item)">
+                <ion-icon name="ellipsis-vertical-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ion-list>
+
+    <div class="dashboard" [hidden]="goals.length">
+        <h2>Bienvenidos a </h2>
+        <img src="assets/icon/dashboard.png">
+        <h2><strong>AHORRO DEPORTIVO</strong></h2>
+        <p>¿Sabes cuanto pudiste <strong>Ahorrar</strong> apoyando a tu quipo de <strong>Futbol</strong> ? </p>
+    </div>
+
+    <ion-col padding>
+        <ion-button expand="full" color="primary" (click)="presentModal()">CREAR META</ion-button>
+    </ion-col>
+</ion-content>
